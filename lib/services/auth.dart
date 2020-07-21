@@ -28,6 +28,7 @@ class AuthService{
     }
   }
 
+
   //signout
   Future signOut () async{
     try{

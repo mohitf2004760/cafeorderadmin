@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cafeorderadmin/models/order.dart';
+import 'package:cafeorderadmin/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cafeorderadmin/models/cart.dart';
 import 'package:flutter/material.dart';
@@ -63,4 +64,22 @@ class DatabaseService {
     }
     return ordersList;
   }
+
+
+  //get User data
+  Future<UserData> getUserData(String uid) async{
+    try{
+      DocumentSnapshot documentSnapshot = await usersProfileCollection.document(uid).get();
+      var a = documentSnapshot.data;
+      return UserData(uid:uid,name:a['name'],phone:a['phone']);
+      //print(a);
+//      FirebaseUser user = result.user;
+//      return _userFromFirebaseUser(user);
+    }catch(e){
+          print(e);
+    }
+  }
+
+
+
 }
